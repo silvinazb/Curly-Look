@@ -97,7 +97,7 @@ function filtrarTodos(){
     productosFiltrados.forEach(cards => {
         cardsHome += `<div class="col-lg-4 col-md-6 mb-4">
         <div class="card h-100">
-        <a href="#"><img class="card-img-top" src="${cards.imagen}" alt=""></a>
+        <a href="#"><img class="card-img-top w-50 mx-auto d-block" src="${cards.imagen}" alt=""></a>
         <div class="card-body">
             <h4 class="card-title">
             <a href="#" style="color: red">${cards.nombre}</a>
@@ -113,3 +113,15 @@ function filtrarTodos(){
     })
     $('#productos').html(cardsHome);
 }
+
+$("#fade-in").on("click", function (){
+    $("#circulo").fadeIn("fast", function (){
+        $("#circulo").animate({left: 80,
+            width: '6.5em', 
+            height: '6.5em',}
+            , 1500)
+        $("#circulo").css("border", "dotted")
+        $("#circulo").delay(1000)
+        $("#circulo").fadeOut(2000)
+    });
+});
