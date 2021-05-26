@@ -1,11 +1,5 @@
-let valorDelCarritoEnStorage = localStorage.getItem("totalCarrito");
+let valorDelCarritoEnStorage = JSON.parse(localStorage.getItem("totalCarrito"));
 let totalCarrito = 0;
-
-if (valorDelCarritoEnStorage == null){
-    totalCarrito = 0;
-} else{
-    totalCarrito = JSON.parse(valorDelCarritoEnStorage);
-}
 
 
 // Creacion de navBar con DOM
@@ -36,7 +30,7 @@ PRODUCTOS.forEach (cards => {
             <p class="card-text">Lo mejor para tu pelo</p>
         </div>
         <div class="card-footer">
-        <input onchange="agregarAlCarrito(${cards.precio}, ${cards.descuento})" type="number" min ="0" max ="10">
+        <button onclick="agregarAlCarrito(${cards.precio}, ${cards.descuento})"> Agregar al carrito</button>
         </div>
         </div>
     </div>`;
@@ -56,9 +50,8 @@ function agregarAlCarrito (precio, descuento) {
         if (chequearDescuento(descuento)){
         totalCarrito += precio*cantidad*descuento
         document.getElementById('total-carrito').innerHTML = `$${totalCarrito}`;
-        // Reemplazo de -> console.log (`Se agrego un nuevo producto al carrito. El total es: ${totalCarrito}`) 
-        // con modificacion de etiqueta 
-    localStorage.totalCarrito = JSON.stringify(totalCarrito);
+
+    localStorage.setItem('total-carrito', JSON.stringify(totalCarrito))
     }
 }
 
@@ -75,5 +68,48 @@ function chequearDescuento (descuento){
     }
 }
 
+function filtrar(filtro){
+    let productosFiltrados = PRODUCTOS.filter((element) => element.categoria == filtro);
+    let cardsHome = ``;
+    productosFiltrados.forEach(cards => {
+        cardsHome += `<div class="col-lg-4 col-md-6 mb-4">
+        <div class="card h-100">
+        <a href="#"><img class="card-img-top" src="${cards.imagen}" alt=""></a>
+        <div class="card-body">
+            <h4 class="card-title">
+            <a href="#" style="color: red">${cards.nombre}</a>
+            </h4>
+            <h5>$${cards.precio}</h5>
+            <p class="card-text">Lo mejor para tu pelo</p>
+        </div>
+        <div class="card-footer">
+        <button onclick="agregarAlCarrito(${cards.precio}, ${cards.descuento})"> Agregar al carrito</button>
+        </div>
+        </div>
+    </div>`
+    })
+    $('#productos').html(cardsHome);
+}
 
-
+function filtrarTodos(){
+    let productosFiltrados = PRODUCTOS;
+    let cardsHome = ``;
+    productosFiltrados.forEach(cards => {
+        cardsHome += `<div class="col-lg-4 col-md-6 mb-4">
+        <div class="card h-100">
+        <a href="#"><img class="card-img-top" src="${cards.imagen}" alt=""></a>
+        <div class="card-body">
+            <h4 class="card-title">
+            <a href="#" style="color: red">${cards.nombre}</a>
+            </h4>
+            <h5>$${cards.precio}</h5>
+            <p class="card-text">Lo mejor para tu pelo</p>
+        </div>
+        <div class="card-footer">
+        <button onclick="agregarAlCarrito(${cards.precio}, ${cards.descuento})"> Agregar al carrito</button>
+        </div>
+        </div>
+    </div>`
+    })
+    $('#productos').html(cardsHome);
+}
