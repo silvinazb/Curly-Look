@@ -21,7 +21,7 @@ let cardsHome = ``
 PRODUCTOS.forEach (cards => {
     cardsHome += `<div class="col-lg-4 col-md-6 mb-4">
         <div class="card h-100">
-        <a href="#"><img class="card-img-top" src="${cards.imagen}" alt=""></a>
+        <a href="#"><img class="card-img-top w-50 mx-auto d-block" src="${cards.imagen}" alt=""></a>
         <div class="card-body">
             <h4 class="card-title">
             <a href="#" style="color: red">${cards.nombre}</a>
@@ -45,7 +45,6 @@ document.getElementById('productos').innerHTML = cardsHome;
  */
 
 function agregarAlCarrito (precio, descuento) {
-    // cantidad = prompt ('Cuanto desea comprar?') 
     cantidad = 1
         if (chequearDescuento(descuento)){
         totalCarrito += precio*cantidad*descuento
@@ -68,13 +67,15 @@ function chequearDescuento (descuento){
     }
 }
 
+// Filtros 
+
 function filtrar(filtro){
     let productosFiltrados = PRODUCTOS.filter((element) => element.categoria == filtro);
     let cardsHome = ``;
     productosFiltrados.forEach(cards => {
         cardsHome += `<div class="col-lg-4 col-md-6 mb-4">
         <div class="card h-100">
-        <a href="#"><img class="card-img-top" src="${cards.imagen}" alt=""></a>
+        <a href="#"><img class="card-img-top w-50 mx-auto d-block" src="${cards.imagen}" alt=""></a>
         <div class="card-body">
             <h4 class="card-title">
             <a href="#" style="color: red">${cards.nombre}</a>
@@ -113,6 +114,8 @@ function filtrarTodos(){
     })
     $('#productos').html(cardsHome);
 }
+
+// Animaciones 
 
 $("#fade-in").on("click", function (){
     $("#circulo").fadeIn("fast", function (){

@@ -5,10 +5,10 @@ class Navbar {
     }
 }
 
-const linkOne = new Navbar('Home', "index.html")
-const linkTwo = new Navbar('Nosotros', "")
-const linkThree = new Navbar('<i class="fas fa-cut"></i> Tips', "")
-const linkFour = new Navbar('Contacto', "contact.html")
+const linkOne = new Navbar('Nosotros', "")
+const linkTwo = new Navbar('<i class="fas fa-cut"></i> Tips', "")
+const linkThree = new Navbar('Contacto', "contact.html")
+const linkFour = new Navbar('<i class="fas fa-shopping-cart"></i>Carrito', "")
 
 const LINKS = [linkOne, linkTwo, linkThree, linkFour]
 
