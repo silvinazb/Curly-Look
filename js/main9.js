@@ -1,5 +1,5 @@
 let valorDelCarritoEnStorage = JSON.parse(localStorage.getItem("totalCarrito"));
-let totalCarrito = 0;
+const  totalCarrito = [];
 
 
 // Creacion de navBar con DOM
@@ -30,7 +30,7 @@ PRODUCTOS.forEach (cards => {
             <p class="card-text">Lo mejor para tu pelo</p>
         </div>
         <div class="card-footer">
-        <button onclick="agregarAlCarrito(${cards.precio}, ${cards.descuento})"> Agregar al carrito</button>
+        <button onclick="agregarAlCarrito(${cards.id})"> Agregar al carrito</button>
         </div>
         </div>
     </div>`;
@@ -44,28 +44,14 @@ document.getElementById('productos').innerHTML = cardsHome;
  * @param {*} descuento Este parametro es para el descuento del producto
  */
 
-function agregarAlCarrito (precio, descuento) {
-    cantidad = 1
-        if (chequearDescuento(descuento)){
-        totalCarrito += precio*cantidad*descuento
-        document.getElementById('total-carrito').innerHTML = `$${totalCarrito}`;
-
-    localStorage.setItem('total-carrito', JSON.stringify(totalCarrito))
+function agregarAlCarrito (id) {
+    let productoElegido = PRODUCTOS.find(el => el.id == id)
+        totalCarrito.push(productoElegido)
+        // console.log(totalCarrito)
+        // document.getElementById('total-carrito').innerHTML = `$${totalCarrito}`;
+        localStorage.setItem('total-carrito', JSON.stringify(totalCarrito))
+        
     }
-}
-
-/**
- * Funcion para validar si el producto tiene descuento
- * @param {number} descuento Es el descuento a validar
- * @returns Devuelve un boolean si el producto tiene descuento 
- */
-function chequearDescuento (descuento){
-    if (descuento > 0){
-        return true
-    } else{
-        return false
-    }
-}
 
 // Filtros 
 
