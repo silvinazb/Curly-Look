@@ -14,6 +14,26 @@ LINKS.forEach (enlaces => {
 
 document.getElementById('navbarResponsive').innerHTML = linksWeb;
 
+// Creacion de modal 
+
+const contenedorModal = document.getElementsByClassName('modal-contenedor')[0]
+const botonAbrir = document.getElementById('boton-carrito')
+const botonCerrar = document.getElementById('carritoCerrar')
+const modalCarrito = document.getElementsByClassName('modal-carrito')[0]
+
+botonAbrir.addEventListener('click', () => {
+    contenedorModal.classList.toggle('modal-active')
+})
+botonCerrar.addEventListener('click', ()=>{
+    contenedorModal.classList.toggle('modal-active')
+})
+contenedorModal.addEventListener('click', ()=>{
+    botonCerrar.click()
+})
+modalCarrito.addEventListener('click', (event)=>{
+    event.stopPropagation()
+})
+
 
 // Creacion de cards con DOM
 let cardsHome = ``
@@ -103,14 +123,14 @@ function filtrarTodos(){
 
 // Animaciones 
 
-$("#fade-in").on("click", function (){
-    $("#circulo").fadeIn("fast", function (){
-        $("#circulo").animate({left: 80,
-            width: '6.5em', 
-            height: '6.5em',}
-            , 1500)
-        $("#circulo").css("border", "dotted")
-        $("#circulo").delay(1000)
-        $("#circulo").fadeOut(2000)
-    });
-});
+// $("#fade-in").on("click", function (){
+//     $("#circulo").fadeIn("fast", function (){
+//         $("#circulo").animate({left: 80,
+//             width: '6.5em', 
+//             height: '6.5em',}
+//             , 1500)
+//         $("#circulo").css("border", "dotted")
+//         $("#circulo").delay(1000)
+//         $("#circulo").fadeOut(2000)
+//     });
+// });
