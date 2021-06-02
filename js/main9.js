@@ -1,6 +1,9 @@
-let valorDelCarritoEnStorage = JSON.parse(localStorage.getItem("totalCarrito"));
-const  totalCarrito = [];
+const valorDelCarritoEnStorage = localStorage.getItem("totalCarrito");
+let  totalCarrito = [];
 
+if (valorDelCarritoEnStorage != null){
+    totalCarrito = JSON.parse(valorDelCarritoEnStorage);
+} 
 
 // Creacion de navBar con DOM
 LINKS.forEach (enlaces => {
@@ -58,22 +61,16 @@ PRODUCTOS.forEach (cards => {
 
 document.getElementById('productos').innerHTML = cardsHome;
 
-/** ESTOS PARAMETROS ESTAN DESACTIVADOS POR AHORA
- * Esta funcion agrega productos al carrito
- * @param {*} precio Este parametro es para el precio del producto
- * @param {*} descuento Este parametro es para el descuento del producto
- */
-
+// AGREGAR AL CARRITO 
 function agregarAlCarrito (id) {
     let productoElegido = PRODUCTOS.find(el => el.id == id)
         totalCarrito.push(productoElegido)
-        // console.log(totalCarrito)
-        // document.getElementById('total-carrito').innerHTML = `$${totalCarrito}`;
-        localStorage.setItem('total-carrito', JSON.stringify(totalCarrito))
+        localStorage.setItem('total-carrito', JSON.stringify(totalCarrito));
         
         actualizarCarrito ()
     }
 
+// ACTUALIZAR CARRITO 
 
     const contenedorCarrito = document.getElementById('carrito-contenedor')
 
@@ -96,6 +93,8 @@ function actualizarCarrito() {
     contadorCarrito.innerText = totalCarrito.length
     precioTotal.innerText = totalCarrito.reduce( (acc, el) => acc += el.precio, 0 )
 }
+
+// ELIMINAR DEL CARRITO 
 
 function eliminarProducto(id) {
     let productoAEliminar = totalCarrito.find( el => el.id == id )
@@ -158,16 +157,3 @@ function filtrarTodos(){
     $('#productos').html(cardsHome);
 }
 
-// Animaciones 
-
-// $("#fade-in").on("click", function (){
-//     $("#circulo").fadeIn("fast", function (){
-//         $("#circulo").animate({left: 80,
-//             width: '6.5em', 
-//             height: '6.5em',}
-//             , 1500)
-//         $("#circulo").css("border", "dotted")
-//         $("#circulo").delay(1000)
-//         $("#circulo").fadeOut(2000)
-//     });
-// });
