@@ -7,8 +7,16 @@
 body{
     font-family: 'Roboto', sans-serif;
     padding-top: 3%;
-
+    /* background-color: pink; */
 }
+
+/* .card{
+    background-color: pink;
+}
+
+.welcome{
+    background-color: white;
+} */
 /* img {
     width: 100%;
     margin-bottom: 10px;
@@ -27,7 +35,7 @@ body{
     font-weight: 700;
     font-size: 50px;
 } */
-#boton-carrito {
+/* #boton-carrito { */
     /* color: white; */
     /* border: none; */
     /* color: royalblue; */
@@ -36,7 +44,7 @@ body{
     /* border-radius: 50%; */
     /* padding: 10px 20px; */
     /* transition: all .3s; */
-}
+/* } */
 /* #boton-carrito:hover {
     cursor: pointer; */
     /* color: white;

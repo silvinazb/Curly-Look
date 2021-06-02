@@ -58,7 +58,7 @@ PRODUCTOS.forEach (cards => {
 
 document.getElementById('productos').innerHTML = cardsHome;
 
-/**
+/** ESTOS PARAMETROS ESTAN DESACTIVADOS POR AHORA
  * Esta funcion agrega productos al carrito
  * @param {*} precio Este parametro es para el precio del producto
  * @param {*} descuento Este parametro es para el descuento del producto
@@ -71,7 +71,44 @@ function agregarAlCarrito (id) {
         // document.getElementById('total-carrito').innerHTML = `$${totalCarrito}`;
         localStorage.setItem('total-carrito', JSON.stringify(totalCarrito))
         
+        actualizarCarrito ()
     }
+
+
+    const contenedorCarrito = document.getElementById('carrito-contenedor')
+
+function actualizarCarrito() {
+    contenedorCarrito.innerHTML=''
+
+    totalCarrito.forEach( (producto) => {
+
+        const div = document.createElement('div')
+        div.classList.add('productoEnCarrito')
+        div.innerHTML = `
+                        <p>${producto.nombre}</p>
+                        <p>Precio: $${producto.precio}</p>
+                        <button onclick=eliminarProducto(${producto.id}) class="boton-eliminar"><i class="fas fa-trash-alt"></i></button>
+                    `
+
+        contenedorCarrito.appendChild(div)
+    })
+
+    contadorCarrito.innerText = totalCarrito.length
+    precioTotal.innerText = totalCarrito.reduce( (acc, el) => acc += el.precio, 0 )
+}
+
+function eliminarProducto(id) {
+    let productoAEliminar = totalCarrito.find( el => el.id == id )
+    let indice = totalCarrito.indexOf(productoAEliminar)
+
+    totalCarrito.splice(indice, 1)
+    actualizarCarrito()
+}
+
+const contadorCarrito = document.getElementById('contadorCarrito')
+const precioTotal = document.getElementById('precioTotal')
+
+
 
 // Filtros 
 
@@ -113,7 +150,7 @@ function filtrarTodos(){
             <p class="card-text">Lo mejor para tu pelo</p>
         </div>
         <div class="card-footer">
-        <button onclick="agregarAlCarrito(${cards.precio}, ${cards.descuento})"> Agregar al carrito</button>
+        <button onclick="agregarAlCarrito(${cards.precio}, ${cards.descuento})" > Agregar al carrito</button>
         </div>
         </div>
     </div>`
