@@ -55,18 +55,15 @@
     </div>
 
   </div>
-  
-  <main id="contenedor-productos">
-  </main>
 
-<div class="modal-contenedor ">
-    <div class="modal-carrito">
-        <h3>Carrito</h3>
-        <button id="carritoCerrar"><i class="fas fa-times-circle"></i></button>
+<div class="modal-contenedor fixed-top d-flex justify-content-center align-items-center">
+    <div class="modal-carrito p-2 position-relative bg-white">
+        <h3 class="text-danger ">Carrito</h3>
+        <button id="carritoCerrar"><i class="fas fa-times-circle text-danger"></i></button>
         <div id="carrito-contenedor">
         </div>
-        <p class="precioProducto">Precio total: $<span id="precioTotal"></span></p>
-        <button type= "button" class="btn-danger float-right">Pagar</button>
+        <p>Total: $<span id="precioTotal"></span></p>
+        <button type= "button" class="btn btn-danger mx-auto d-block" onclick="generarLinkPago()" >Pagar</button>
     </div>
 </div>
   

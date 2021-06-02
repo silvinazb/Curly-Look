@@ -5,7 +5,7 @@ if (valorDelCarritoEnStorage != null){
     totalCarrito = JSON.parse(valorDelCarritoEnStorage);
 } 
 
-// Creacion de navBar con DOM
+// NAVBAR
 LINKS.forEach (enlaces => {
     linksWeb += `
     <ul  class="navbar-nav ml-auto">
@@ -17,7 +17,7 @@ LINKS.forEach (enlaces => {
 
 document.getElementById('navbarResponsive').innerHTML = linksWeb;
 
-// Creacion de modal 
+// MODAL
 
 const contenedorModal = document.getElementsByClassName('modal-contenedor')[0]
 const botonAbrir = document.getElementById('boton-carrito')
@@ -38,7 +38,8 @@ modalCarrito.addEventListener('click', (event)=>{
 })
 
 
-// Creacion de cards con DOM
+// CARDS 
+
 let cardsHome = ``
 
 PRODUCTOS.forEach (cards => {
@@ -53,7 +54,7 @@ PRODUCTOS.forEach (cards => {
             <p class="card-text">Lo mejor para tu pelo</p>
         </div>
         <div class="card-footer">
-        <button onclick="agregarAlCarrito(${cards.id})"> Agregar al carrito</button>
+        <button onclick="agregarAlCarrito(${cards.id})" class=" btn btn-danger mx-auto d-block"> Agregar al carrito</button>
         </div>
         </div>
     </div>`;
@@ -62,6 +63,7 @@ PRODUCTOS.forEach (cards => {
 document.getElementById('productos').innerHTML = cardsHome;
 
 // AGREGAR AL CARRITO 
+
 function agregarAlCarrito (id) {
     let productoElegido = PRODUCTOS.find(el => el.id == id)
         totalCarrito.push(productoElegido)
@@ -82,9 +84,9 @@ function actualizarCarrito() {
         const div = document.createElement('div')
         div.classList.add('productoEnCarrito')
         div.innerHTML = `
-                        <p>${producto.nombre}</p>
-                        <p>Precio: $${producto.precio}</p>
-                        <button onclick=eliminarProducto(${producto.id}) class="boton-eliminar"><i class="fas fa-trash-alt"></i></button>
+                        <p >${producto.nombre}</p>
+                        <p >Precio: $${producto.precio}</p>
+                        <button onclick=eliminarProducto(${producto.id}) class="border-0 bg-white"><i class="fas fa-trash-alt text-danger "></i></button>
                     `
 
         contenedorCarrito.appendChild(div)
@@ -107,9 +109,34 @@ function eliminarProducto(id) {
 const contadorCarrito = document.getElementById('contadorCarrito')
 const precioTotal = document.getElementById('precioTotal')
 
+// PAGAR - Falta asociar con mis productos
+
+async function generarLinkPago(){
+    const response = await fetch("https://api.mercadopago.com/checkout/preferences", {
+        method: 'POST',
+        headers: {
+        Authorization: "Bearer TEST-549129222945267-053120-090fda39cac4bf9a4101548a91353243-183263403"    
+    },
+        body: JSON.stringify({
+            items: [
+                {
+                title: "Dummy Title",
+                description: "Dummy description",
+                picture_url: "http://www.myapp.com/myimage.jpg",
+                category_id: "cat123",
+                quantity: 1,
+                currency_id: "ARS",
+                unit_price: 10,
+                },
+]
+    }),
+    });
+    const data = await response.json()
+    window.open(data.init_point, '_blank');
+}
 
 
-// Filtros 
+// FILTROS
 
 function filtrar(filtro){
     let productosFiltrados = PRODUCTOS.filter((element) => element.categoria == filtro);
@@ -126,7 +153,7 @@ function filtrar(filtro){
             <p class="card-text">Lo mejor para tu pelo</p>
         </div>
         <div class="card-footer">
-        <button onclick="agregarAlCarrito(${cards.precio}, ${cards.descuento})"> Agregar al carrito</button>
+        <button onclick="agregarAlCarrito(${cards.id})" class=" btn btn-danger mx-auto d-block"> Agregar al carrito</button>
         </div>
         </div>
     </div>`
@@ -149,7 +176,7 @@ function filtrarTodos(){
             <p class="card-text">Lo mejor para tu pelo</p>
         </div>
         <div class="card-footer">
-        <button onclick="agregarAlCarrito(${cards.precio}, ${cards.descuento})" > Agregar al carrito</button>
+        <button onclick="agregarAlCarrito(${cards.id})" class=" btn btn-danger mx-auto d-block"> Agregar al carrito</button>
         </div>
         </div>
     </div>`
