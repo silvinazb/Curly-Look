@@ -1,9 +1,13 @@
-const valorDelCarritoEnStorage = localStorage.getItem("totalCarrito");
+const valorDelCarritoEnStorage = localStorage.totalCarrito
 let  totalCarrito = [];
 
-if (valorDelCarritoEnStorage != null){
+if (valorDelCarritoEnStorage == null){
+    totalCarrito = []
+} else{
     totalCarrito = JSON.parse(valorDelCarritoEnStorage);
-} 
+    // document.getElementById('carrito-contenedor').innerHTML = totalCarrito
+
+}
 
 // NAVBAR
 LINKS.forEach (enlaces => {
@@ -67,7 +71,7 @@ document.getElementById('productos').innerHTML = cardsHome;
 function agregarAlCarrito (id) {
     let productoElegido = PRODUCTOS.find(el => el.id == id)
         totalCarrito.push(productoElegido)
-        localStorage.setItem('total-carrito', JSON.stringify(totalCarrito));
+        localStorage.totalCarrito = JSON.stringify(totalCarrito);
         
         actualizarCarrito ()
     }
@@ -90,6 +94,7 @@ function actualizarCarrito() {
                     `
 
         contenedorCarrito.appendChild(div)
+        
     })
 
     contadorCarrito.innerText = totalCarrito.length
@@ -103,32 +108,44 @@ function eliminarProducto(id) {
     let indice = totalCarrito.indexOf(productoAEliminar)
 
     totalCarrito.splice(indice, 1)
+    localStorage.totalCarrito = JSON.stringify(totalCarrito)
     actualizarCarrito()
 }
 
 const contadorCarrito = document.getElementById('contadorCarrito')
 const precioTotal = document.getElementById('precioTotal')
 
+// VACIAR CARRITO 
+
+function vaciarCarrito() {
+    totalCarrito = []
+    localStorage.totalCarrito = JSON.stringify(totalCarrito)
+
+    actualizarCarrito()
+}
+
 // PAGAR - Falta asociar con mis productos
 
 async function generarLinkPago(){
+    const productosAPagar = totalCarrito.map(element =>{
+        let nuevoElemento = {
+            title: element.nombre,
+            description: "",
+            picture_url: element.imagen,
+            category_id: element.id,
+            quantity: "",
+            currency_id: "ARS",
+            unit_price: element.precio,
+        };
+        return nuevoElemento
+    });
     const response = await fetch("https://api.mercadopago.com/checkout/preferences", {
         method: 'POST',
         headers: {
         Authorization: "Bearer TEST-549129222945267-053120-090fda39cac4bf9a4101548a91353243-183263403"    
     },
         body: JSON.stringify({
-            items: [
-                {
-                title: "Dummy Title",
-                description: "Dummy description",
-                picture_url: "http://www.myapp.com/myimage.jpg",
-                category_id: "cat123",
-                quantity: 1,
-                currency_id: "ARS",
-                unit_price: 10,
-                },
-]
+            items: productosAPagar,
     }),
     });
     const data = await response.json()
