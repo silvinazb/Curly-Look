@@ -12,4 +12,3 @@ const linkThree = new Navbar('<i class="far fa-envelope"></i> Contacto', "contac
 const LINKS = [linkOne, linkTwo, linkThree]
 
 let linksWeb = ``
-

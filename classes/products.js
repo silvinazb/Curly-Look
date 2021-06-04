@@ -17,12 +17,3 @@ const ProductSix = new Product(6, 'Combo', 4000, "/img/skala2.png", "Nutri")
 
 
 const PRODUCTOS = [ProductOne, ProductTwo, ProductThree, ProductFour, ProductFive, ProductSix]
-
-// PARA MELI
-
-// constructor (category_id, title, unit_price, picture_url, category_id) {
-//     this.category_id  = category_id
-//     this.title = title
-//     this.unit_price = unit_price
-//     this.picture_url = picture_url
-//     this.category_id = category_id
