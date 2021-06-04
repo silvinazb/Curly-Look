@@ -127,32 +127,141 @@ function vaciarCarrito() {
 // PAGAR - Falta asociar con mis productos
 
 async function generarLinkPago(){
-    const productosAPagar = totalCarrito.map(element =>{
-        let nuevoElemento = {
-            title: element.nombre,
-            description: "",
-            picture_url: element.imagen,
-            category_id: element.id,
-            quantity: "",
-            currency_id: "ARS",
-            unit_price: element.precio,
-        };
-        return nuevoElemento
-    });
     const response = await fetch("https://api.mercadopago.com/checkout/preferences", {
         method: 'POST',
         headers: {
-        Authorization: "Bearer TEST-549129222945267-053120-090fda39cac4bf9a4101548a91353243-183263403"    
+        Authorization: "Bearer "    
     },
         body: JSON.stringify({
-            items: productosAPagar,
+            items: [
+                {
+                title: "Dummy Title",
+                description: "Dummy description",
+                picture_url: "http://www.myapp.com/myimage.jpg",
+                category_id: "cat123",
+                quantity: 1,
+                currency_id: "ARS",
+                unit_price: 10,
+                },
+                {
+                    title: "Dummy Title",
+                    description: "Dummy description",
+                    picture_url: "http://www.myapp.com/myimage.jpg",
+                    category_id: "cat123",
+                    quantity: 1,
+                    currency_id: "ARS",
+                    unit_price: 10,
+                    },
+                
+            ]
     }),
     });
     const data = await response.json()
     window.open(data.init_point, '_blank');
 }
 
+// const generarLinkPago = async () => {
 
+//     const carritoAPagar = totalCarrito.map((element) => {
+//         let nuevoElemento = {
+//         title: element.nombre,
+//         description: "",
+//         picture_url: element.imagen,
+//         category_id: element.id,
+//         quantity: Number(element.cantidad),
+//         currency_id: "ARS",
+//         unit_price: Number(element.precio),
+//     };
+//     return nuevoElemento;
+//     });
+//     const resp = await fetch("https://api.mercadopago.com/checkout/preferences", 
+//     {
+//         method: "POST",
+//         headers: {
+//             Authorization: 'Bearer TEST-549129222945267-053120-090fda39cac4bf9a4101548a91353243-183263403'
+//         },
+//         body: JSON.stringify({
+//             items: carritoAPagar,
+//         })
+//     })
+
+//     const data = await resp.json()
+
+//     window.open(data.init_point, "_blank")
+// }
+
+// async function generarLinkDePago() {
+//     const  = articulosCarrito.map((element) => {
+//       let nuevoElemento = {
+//         title: element.nombre,
+//         description: "",
+//         picture_url: element.imagen,
+//         category_id: element.id,
+//         quantity: Number(element.cantidad),
+//         currency_id: "ARS",
+//         unit_price: Number(element.precio),
+//       };
+//       return nuevoElemento;
+//     });
+//     const response = await fetch(
+//       "https://api.mercadopago.com/checkout/preferences",
+//       {
+//         method: "POST",
+//         headers: {
+//           Authorization:
+//             "Bearer ",
+//         },
+//         body: JSON.stringify({
+//           items: productsToMP,
+//         }),
+//       }
+//     );
+//     const data = await response.json();
+//     window.open(data.init_point, "_blank");
+//   }
+
+// curl -X POST \
+//     'https://api.mercadopago.com/checkout/preferences' \
+//     -H 'Authorization: Bearer ACCESS_TOKEN_ENV' \ 
+//     -d '{
+//   "items": [
+//     {
+//       "title": "Dummy Title",
+//       "description": "Dummy description",
+//       "picture_url": "http://www.myapp.com/myimage.jpg",
+//       "category_id": "cat123",
+//       "quantity": 1,
+//       "currency_id": "U$",
+//       "unit_price": 10
+//     }
+//   ],
+//   "payer": {
+//     "phone": {},
+//     "identification": {},
+//     "address": {}
+//   },
+//   "payment_methods": {
+//     "excluded_payment_methods": [
+//       {}
+//     ],
+//     "excluded_payment_types": [
+//       {}
+//     ]
+//   },
+//   "shipments": {
+//     "free_methods": [
+//       {}
+//     ],
+//     "receiver_address": {}
+//   },
+//   "back_urls": {},
+//   "differential_pricing": {},
+//   "tracks": [
+//     {
+//       "type": "google_ad"
+//     }
+//   ]
+// }'
 // FILTROS
 
 function filtrar(filtro){
