@@ -1,20 +1,48 @@
 // AGREGAR AL CARRITO 
 
-function agregarAlCarrito (id) {
-    let productoElegido = PRODUCTOS.find(el => el.id == id)
-        totalCarrito.push(productoElegido)
+function agregarAlCarrito (item) {
+    let productoElegido = totalCarrito.find(el => el.id == item)
+
+    if(productoElegido){
+        productoElegido.cantidad +=1
+    } else{
+        let {id, nombre, precio} = PRODUCTOS.find(el => el.id == item)
+        totalCarrito.push({id: id, nombre: nombre, precio: precio, cantidad: 1})
+    }
         localStorage.totalCarrito = JSON.stringify(totalCarrito);
         
         actualizarCarrito ()
     }
 
-// ELIMINAR DEL CARRITO 
+
+// ELIMINAR DEL CARRITO (DE A UN ELEMENTO POR MISMO PRODUCTO)
 
 function eliminarProducto(id) {
     let productoAEliminar = totalCarrito.find( el => el.id == id )
-    let indice = totalCarrito.indexOf(productoAEliminar)
 
-    totalCarrito.splice(indice, 1)
+    productoAEliminar.cantidad--
+
+    if(productoAEliminar.cantidad == 0){
+        let indice = totalCarrito.indexOf(productoAEliminar)
+        totalCarrito.splice(indice, 1)
+    }
+
+    localStorage.totalCarrito = JSON.stringify(totalCarrito)
+    actualizarCarrito()
+}
+
+// ELIMINAR DEL CARRITO (TODOS LOS ELEMENTOS DE UN MISMO PRODUCTO)
+
+function eliminarProductos(id) {
+    let productosAEliminar = totalCarrito.find( el => el.id == id )
+
+    productosAEliminar.cantidad
+
+    if(productosAEliminar.cantidad != 0){
+        let indice = totalCarrito.indexOf(productosAEliminar)
+        totalCarrito.splice(indice, 1)
+    }
+
     localStorage.totalCarrito = JSON.stringify(totalCarrito)
     actualizarCarrito()
 }
@@ -37,13 +65,12 @@ async function generarLinkPago() {
             description: "",
             picture_url: "",
             category_id: element.id,
-            quantity: 1,
+            quantity: element.cantidad,
             currency_id: "ARS",
             unit_price: Number(element.precio),
         }; 
         return nuevoElemento;
     });
-    console.log(carritoFinal);
     const response = await fetch(
         "https://api.mercadopago.com/checkout/preferences", 
         {

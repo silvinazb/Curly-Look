@@ -3,7 +3,6 @@ class Product {
         this.id  = id
         this.nombre = nombre
         this.precio = precio
-        this.descuento = 
         this.imagen = imagen
         this.categoria = categoria
     }

@@ -116,18 +116,22 @@ totalCarrito.forEach( (producto) => {
     const div = document.createElement('div')
     div.classList.add('productoEnCarrito')
     div.innerHTML = `
-                    <p >${producto.nombre}</p>
-                    <p >Precio: $${producto.precio}</p>
-                    <button onclick=eliminarProducto(${producto.id}) class="border-0 bg-white"><i class="fas fa-trash-alt text-danger "></i></button>
-                `
+        <p class="mb-0 mr-auto ">${producto.nombre}</p>
+        <p class="mb-0 mr-4 ml-auto">Precio: $${producto.precio * producto.cantidad}</p>
+        <i onclick=eliminarProducto(${producto.id}) class="fas fa-minus-circle text-secondary lineHei "></i>
+        <p class="mb-0 mr-1 ml-1"> Cantidad: ${producto.cantidad}</p>
+        <i onclick=agregarAlCarrito(${producto.id}) class="fas fa-plus-circle text-secondary lineHei"></i>
+        <i onclick=eliminarProductos(${producto.id}) class="fas fa-trash-alt text-danger ml-4 lineHei"></i>
+        `
 
     contenedorCarrito.appendChild(div)
     
 })
 
 contadorCarrito.innerText = totalCarrito.length
-precioTotal.innerText = totalCarrito.reduce( (acc, el) => acc += el.precio, 0 )
+precioTotal.innerText = totalCarrito.reduce( (acc, el) => acc + (el.precio * el.cantidad), 0 )
 }
+
 const valorDelCarritoEnStorage = localStorage.totalCarrito
 let  totalCarrito = [];
 
