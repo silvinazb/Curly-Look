@@ -1,4 +1,6 @@
 function validarEdad(){
+    const nombre = $("#inputName").val()
+    const apellido = $("#inputSurname").val()
     if ($("#edad").val() <= 18){
         let menor =  `
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -11,7 +13,7 @@ function validarEdad(){
                     </button>
                 </div>
                 <div class="modal-body">
-                    Necesitas ser mayor para contactarnos!
+                    Necesitas ser mayor para contactarnos${nombre} ${apellido}
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
@@ -21,8 +23,6 @@ function validarEdad(){
         </div>` 
     $('body').append(menor)
     } else {
-            const nombre = $("#inputName").val()
-            const apellido = $("#inputSurname").val()
             let mayor =  `
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -46,4 +46,3 @@ function validarEdad(){
     }
 }
 
-// Aca no se me actualiza luego de enviar!

@@ -116,7 +116,7 @@ totalCarrito.forEach( (producto) => {
     const div = document.createElement('div')
     div.classList.add('productoEnCarrito')
     div.innerHTML = `
-        <p class="mb-0 mr-auto ">${producto.nombre}</p>
+        <p class="mb-0 mr-auto text-danger font-weight-bold">${producto.nombre}</p>
         <p class="mb-0 mr-4 ml-auto">Precio: $${producto.precio * producto.cantidad}</p>
         <i onclick=eliminarProducto(${producto.id}) class="fas fa-minus-circle text-secondary lineHei "></i>
         <p class="mb-0 mr-1 ml-1"> Cantidad: ${producto.cantidad}</p>

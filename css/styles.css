@@ -22,8 +22,8 @@ body{
 }
 
 .modal-carrito {
-    min-width: 500px;
-    padding: 20px;
+    min-width: 25rem;
+    padding: 1rem;
     margin-top: -100%;
     transition: all .5s;
 }
@@ -33,19 +33,12 @@ body{
 }
 
 .modal-carrito #carritoCerrar {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    font-size: 20px;
-    color: royalblue;
-    border: none;
-    background-color: white;
+    top: 1rem;
+    right: 1rem;
 }
 
 .productoEnCarrito {
-    border-left: 5px solid #df4759;
-    border-bottom-left-radius: 3px;
-    border-top-left-radius: 3px;
+    border-left: 0.3rem solid #df4759;
     margin: 0.5rem;
     padding: 0.5rem;
     display: flex;
