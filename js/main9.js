@@ -10,6 +10,30 @@ LINKS.forEach (enlaces => {
 
 document.getElementById('navbarResponsive').innerHTML = linksWeb;
 
+// CARDS 
+
+let cardsHome = ``
+
+PRODUCTOS.forEach (cards => {
+    cardsHome += `<div class="col-lg-4 col-md-6 mb-4">
+        <div class="card h-100">
+        <a href="#"><img class="card-img-top w-50 mx-auto d-block" src="${cards.imagen}" alt=""></a>
+        <div class="card-body">
+            <h4 class="card-title">
+            <a href="#" style="color: red" class="text-decoration-none">${cards.nombre}</a>
+            </h4>
+            <h5>$${cards.precio}</h5>
+            <p class="card-text">Lo mejor para tu pelo</p>
+        </div>
+        <div class="card-footer">
+        <button onclick="agregarAlCarrito(${cards.id})" class=" btn btn-danger mx-auto d-block"> Agregar al carrito</button>
+        </div>
+        </div>
+    </div>`;
+})
+
+document.getElementById('productos').innerHTML = cardsHome;
+
 // MODAL
 
 const contenedorModal = document.getElementsByClassName('modal-contenedor')[0]
@@ -29,30 +53,6 @@ contenedorModal.addEventListener('click', ()=>{
 modalCarrito.addEventListener('click', (event)=>{
     event.stopPropagation()
 })
-
-// CARDS 
-
-let cardsHome = ``
-
-PRODUCTOS.forEach (cards => {
-    cardsHome += `<div class="col-lg-4 col-md-6 mb-4">
-        <div class="card h-100">
-        <a href="#"><img class="card-img-top w-50 mx-auto d-block" src="${cards.imagen}" alt=""></a>
-        <div class="card-body">
-            <h4 class="card-title">
-            <a href="#" style="color: red">${cards.nombre}</a>
-            </h4>
-            <h5>$${cards.precio}</h5>
-            <p class="card-text">Lo mejor para tu pelo</p>
-        </div>
-        <div class="card-footer">
-        <button onclick="agregarAlCarrito(${cards.id})" class=" btn btn-danger mx-auto d-block"> Agregar al carrito</button>
-        </div>
-        </div>
-    </div>`;
-})
-
-document.getElementById('productos').innerHTML = cardsHome;
 
 // FILTROS
 

@@ -5,7 +5,7 @@ class Navbar {
     }
 }
 
-const linkOne = new Navbar('<i class="far fa-heart"></i> Nosotros', "")
+const linkOne = new Navbar('<i class="far fa-heart"></i> Nosotros', "") 
 const linkTwo = new Navbar('<i class="fas fa-cut"></i> Tips', "")
 const linkThree = new Navbar('<i class="far fa-envelope"></i> Contacto', "contact.html")
 

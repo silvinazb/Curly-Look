@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
   <link rel="stylesheet" href="/css/styles.css">
   <script src="classes/navbar.js"></script>
-  <script src="classes/ecommerce.js"></script>
+  <script src="classes/carrito.js"></script>
   <script src="classes/products.js"></script>
   <script src="classes/contact.js"></script>
   <script src="/jquery-3.6.0.min.js"></script>
@@ -34,10 +34,11 @@
       <div class="col-lg-3">
         <h1 class="my-4"></h1>
         <div class="list-group mt-3">
-          <h5>Tipo de tratamiento</h5>
-          <a href="#" class="list-group-item text-danger" onclick="filtrar('Hidra')">Hidratacion</a>
-          <a href="#" class="list-group-item text-danger" onclick="filtrar('Nutri')">Nutricion</a>
-          <a href="#" class="list-group-item text-danger" onclick="filtrarTodos()">Todos</a>
+          <h5 class="text-center text-danger font-weight-bold">Tipo de tratamiento</h5>
+          <a href="#" class="list-group-item text-danger text-decoration-none" onclick="filtrar('Hidra')">Hidratacion</a>
+          <a href="#" class="list-group-item text-danger text-decoration-none" onclick="filtrar('Nutri')">Nutricion</a>
+          <a href="#" class="list-group-item text-danger text-decoration-none" onclick="filtrar('Recons')">Reconstruccion</a>
+          <a href="#" class="list-group-item text-danger text-decoration-none" onclick="filtrarTodos()">Todos</a>
           <button id="boton-carrito" type="button" class="btn btn-danger my-3"><i class="fas fa-shopping-cart"></i><span id="contadorCarrito"> Carrito</span></button>
         </div>
 

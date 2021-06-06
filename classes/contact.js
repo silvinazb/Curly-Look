@@ -5,7 +5,7 @@ function validarEdad(){
             <div class="modal-dialog">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Contacto</h5>
+                    <h5 class="modal-title text-danger" id="exampleModalLabel">Contacto</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -14,7 +14,7 @@ function validarEdad(){
                     Necesitas ser mayor para contactarnos!
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                 </div>
                 </div>
             </div>
@@ -28,7 +28,7 @@ function validarEdad(){
                 <div class="modal-dialog">
                     <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Contacto</h5>
+                        <h5 class="modal-title text-danger" id="exampleModalLabel">Contacto</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -37,7 +37,7 @@ function validarEdad(){
                         Gracias por contactarnos ${nombre} ${apellido}!
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                     </div>
                     </div>
                 </div>
